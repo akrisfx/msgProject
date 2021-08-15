@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Chat</title>
+</head>
+
+<body>
+    
+    <div class="main">
+        <div id="upBar">
+            <div id="containerUsername">
+                
+                    <input id="inputNickName"type="text" placeholder="Твой username">
+                    <button id="btnSendName" type="button">Задать</button>
+                
+            </div>
+        </div>
+        <div id="divMessages">
+            
+           <div id="messageContainer"></div>
+        </div>
+        <div id="containerSend">
+            <div id="containerB">
+                <div id="blockSendMessage">
+                    <input id="inputMessage"type="text" placeholder="Сообщение">
+                    <button id="btnSend" type="button">--></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./chat.js"></script>
+</body>
+</html>

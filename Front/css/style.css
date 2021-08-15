@@ -1,0 +1,93 @@
+html,body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body {
+    margin: 0;
+    background-color:rgb(33, 39, 41);
+}
+
+.main {
+    overflow: auto;
+    position: absolute;
+    width: 85%;
+    right: 0;
+    height: 100%;
+    border-left: 3px solid rgb(41, 51, 58);
+}
+
+#upBar {
+    position: fixed;
+    height: 35px;
+    width: 100%;
+    top: 0;
+    background-color: rgb(93, 99, 110) ;
+} 
+
+#containerUsername {
+    position: absolute ;
+    right: 10px;
+    height: 100%;
+    width: 30%;
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+#inputNickName {
+    border-radius: 10px;
+    background-color: rgb(17, 24, 26);
+    color: rgb(57, 64, 66);
+}
+
+#divMessages {
+    margin-top: 35px;
+    width: 100%;
+    height: calc(100% - 70px);
+    overflow-y: auto; 
+}
+
+.msg {
+    color: whitesmoke;
+}
+
+#containerSend {
+    position: fixed;
+    
+    bottom: 0px; 
+    width: 85%;
+    height: 35px;
+    
+    right: 0;
+}
+
+#blockSendMessage {
+    padding-left: 5%;
+    height: 100%;
+    flex-wrap: nowrap;
+    width: 75%;
+    display: flex;
+    align-items: center;
+}
+
+#inputMessage {
+    flex-grow: 100;
+    background-color: rgb(47, 54, 56);
+    border: 0px;
+    margin-right: 3px;
+    border-radius: 5px;
+}
+
+#containerB {
+    height: 35px;
+    border-radius: 10px;
+    background-color: rgb(17, 24, 26);
+}
+
+#btnSend {
+    flex-grow: 1;
+    background-color: rgb(57, 64, 66);
+    border-radius: 90px;
+    color: rgb(5, 5, 5);
+}
