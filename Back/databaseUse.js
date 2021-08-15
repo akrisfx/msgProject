@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const config = require('config.json')
+const config = require('./config.json')
+const token = config.token
 const { Schema } = mongoose;
 
 function createConnection(){
-    const mongoAtlasUri = config.token;
+    const mongoAtlasUri = token;
     try {
         // Connect to the MongoDB cluster
         mongoose.connect(

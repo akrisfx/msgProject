@@ -1,4 +1,4 @@
-const main = document.getElementsByClassName('main');
+const main = document.querySelector('.main');
 
 const form = document.getElementById('inputMessage');
 
@@ -26,11 +26,13 @@ webSocket.onmessage = function(e) {
     let data = JSON.parse(e.data);
     if (data.key == 1){
         for( let i = 0; i < data.content.length; i++){
-            chat.innerHTML += '<div class="msg">' + data.content[i].username + ': ' + data.content[i].content + '</div>'
+            chat.innerHTML += '<div class="msg">' + escape(data.content[i].username) + ': ' + escape(data.content[i].content) + '</div>'
         }
     } else if(data.key == 2) {
-        chat.innerHTML += '<div class="msg">' + data.content.username + ': ' + data.content.message + '</div>'
+        chat.innerHTML += '<div class="msg">' + escape(data.content.username) + ': ' + escape(data.content.message) + '</div>'
     }
+    main.scrollTop = main.scrollHeight
+    
     data = ''
 };
 
@@ -46,9 +48,7 @@ btnSubmitNickname.addEventListener("click", () => {
 // Отслеживаем нажатие мыши
 btnSubmit.addEventListener("click", () => {
     if (input.value != ''){
-        // main.scrollTo({
-        //     top: main.scrollHeight
-        // })
+        
         message = String(input.value);
         webSocket.send(JSON.stringify({
             key: 2,
