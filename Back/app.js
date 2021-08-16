@@ -46,8 +46,8 @@ wsServer.on('connection', async function (ws) {
         {
             let newMessage = new Message({
                 id: 0,
-                username: message.content.username,
-                content: message.content.content
+                username: message.content.username.replace(/</gi, ""),
+                content: message.content.content.replace(/</gi, "")
             })
     
             newMessage.save(function (err) {
@@ -58,8 +58,8 @@ wsServer.on('connection', async function (ws) {
             let obj = {
                 key: 2,
                 content: {
-                    username: message.content.username,
-                    message: message.content.content
+                    username: message.content.username.replace(/</gi, ""),
+                    message: message.content.content.replace(/</gi, "")
                 }
     
             };
