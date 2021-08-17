@@ -26,12 +26,12 @@ function newMessage(message, users) {
             username: message.content.username.replace(/</gi, ""),
             message: message.content.content.replace(/</gi, ""),
             time: {
-                year: date.getFullYear(),
-                month: date.getMonth(),
-                day: date.getDay(),
-                hours: date.getHours(),
-                minutes: date.getMinutes(),
-                seconds: date.getSeconds()
+                year: date.getUTCFullYear(),
+                month: date.getUTCMonth(),
+                day: date.getUTCDay(),
+                hours: date.getUTCHours(),
+                minutes: date.getUTCMinutes(),
+                seconds: date.getUTCSeconds()
             }
         }
 
