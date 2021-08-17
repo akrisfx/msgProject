@@ -13,7 +13,7 @@ const btnSubmit = document.querySelector("#btnSend")
 const btnSubmitNickname = document.querySelector("#btnSendName")
 const inputNickname = document.querySelector("#inputNickName")
 const onlineNow = document.querySelector("#onlineNow")
- 
+const intOnline = document.querySelector("#intOnline")
 // Подключаем WebSocket
 const webSocket = new WebSocket('ws://localhost:5678');
 
@@ -35,7 +35,7 @@ webSocket.onmessage = function(e) {
         console.log(data.content.time)
     }
     else if(data.key == 3){
-        onlineNow.innerHTML += '<span id="intOnline">' + data.onlineUsers + "</span>";
+        intOnline.innerHTML = '<span id="intOnline">' + data.onlineUsers + "</span>";
     }
     chat.scrollBy(0, 20.1)
     data = ''
