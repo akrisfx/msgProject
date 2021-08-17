@@ -6,6 +6,7 @@ html,body{
 body {
     margin: 0;
     background-color:rgb(33, 39, 41);
+    font-family: Calibri
 }
 
 .main {
@@ -50,6 +51,11 @@ body {
 
 .msg {
     color: whitesmoke;
+    font-family: Calibri;
+}
+
+.msg:hover {
+    background-color:rgb(61, 71, 78) ;
 }
 
 #containerSend {
@@ -91,3 +97,5 @@ body {
     border-radius: 90px;
     color: rgb(5, 5, 5);
 }
+
+

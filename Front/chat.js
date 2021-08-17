@@ -32,7 +32,7 @@ webSocket.onmessage = function(e) {
         chat.innerHTML += '<div class="msg">' + data.content.username + ': ' + data.content.message + '</div>'
 
     }
-    main.scrollTop = main.scrollHeight
+    chat.scrollBy(0, 100)
     data = ''
 };
 
