@@ -2,8 +2,8 @@
 
 This is simple anonymous chat
 
-Backend was maken by IlyaM1 with node.js ws mongoose
+Backend is made by IlyaM1 with node.js ws mongoose
 
-Frontend was maken by Akrisfx
+Frontend is made by Akrisfx
 
 Database: MongoDB
