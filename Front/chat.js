@@ -35,7 +35,7 @@ webSocket.onmessage = function(e) {
     else if(data.key == 3){
         console.log(data.onlineUsers)
     }
-    chat.scrollBy(0, 100)
+    chat.scrollBy(0, 20.1)
     data = ''
 };
 
