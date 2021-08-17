@@ -20,23 +20,37 @@ const wsServer = creatingServer();
 let users = []
 
 
+function sendOnlineUsersToAll(){
+    let json = {
+        key: 3,
+        onlineUsers: users.length
+    }
+    for (let u of users) {
+        u.connection.send(JSON.stringify(json))   
+    }
+}
+
 wsServer.on('connection', async function (ws) {
     let user = {
         connection: ws,
-        id: users.length + 1
+        id: users.length + 1,
+        username: "Guest"
     }
     console.log("User connected: " + user.id)
-
     users.push(user)
-
+    
     var query = Message.find({});
     query.exec(function (err, smt) {
         let json = {
             key: 1,
-            content: smt
+            content: smt,
+            // onlineUsers: users.length
         }
         user.connection.send(JSON.stringify(json))
     })
+
+
+    sendOnlineUsersToAll();
 
     ws.on('message', function (message) {
 
@@ -78,9 +92,10 @@ wsServer.on('connection', async function (ws) {
         let id = users.indexOf(user)
         // Убираем этого пользователя
         users.splice(id, 1)
+        sendOnlineUsersToAll()
     })
 })
 
 // 1 - отправка всех сообщений
 // 2 - отправка одного сообщения
-// 3 - отправка ников
+// 3 - отправка кол-ва пользователей
