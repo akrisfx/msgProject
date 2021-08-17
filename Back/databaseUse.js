@@ -12,9 +12,7 @@ function createConnection(){
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 autoIndex: false
-            },
-            () => console.log(" Mongoose is connected")
-            
+            }
         );
         return "Succesfully";
     } catch (e) {
