@@ -30,6 +30,7 @@ webSocket.onmessage = function(e) {
         }
     } else if(data.key == 2) {
         chat.innerHTML += '<div class="msg">' + data.content.username + ': ' + data.content.message + '</div>'
+        console.log(data.content.time)
     }
     else if(data.key == 3){
         console.log(data.onlineUsers)
