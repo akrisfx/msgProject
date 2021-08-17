@@ -44,7 +44,7 @@ webSocket.onmessage = function(e) {
     else if(data.key == 6){
         console.log("key 6:"+ data.content)
     }
-    chat.scrollBy(0, 100)
+    chat.scrollBy(0, 20.1)
     data = ''
 };
 
