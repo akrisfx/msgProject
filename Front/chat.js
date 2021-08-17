@@ -19,6 +19,8 @@ const webSocket = new WebSocket('ws://localhost:5678');
 
 // const username = prompt('your username', '228')
 
+IDofUser = 0;
+usernameOfUser = "Guest";
 
 // Получаем сообщение от сервера
 webSocket.onmessage = function(e) {
@@ -35,6 +37,13 @@ webSocket.onmessage = function(e) {
     else if(data.key == 3){
         console.log(data.onlineUsers)
     }
+    else if(data.key == 4){
+        IDofUser = data.content.id;
+        usernameOfUser = data.content.username;
+    }
+    else if(data.key == 6){
+        console.log("key 6:"+ data.content)
+    }
     chat.scrollBy(0, 100)
     data = ''
 };
@@ -45,6 +54,13 @@ btnSubmitNickname.addEventListener("click", () => {
     if (inputNickname.value != ''){
     username = String(inputNickname.value)
     }
+    webSocket.send(JSON.stringify({
+        key: 5,
+        content: {
+            id: IDofUser,
+            username: username
+        }
+    }));
 })
 
 
@@ -80,7 +96,7 @@ document.addEventListener('keydown', function(event) {
             
         }
     }
-});
+})
 
 
 
