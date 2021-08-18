@@ -78,3 +78,4 @@ wsServer.on('connection', async function (ws) {
 // 4 - sending id and username to new user
 // 5 - get new username
 // 6 - send all Users
+// 
