@@ -1,4 +1,4 @@
-const Message = require("./messageModel")
+const Message = require("../database/messageModel")
 
 function sendingAllMessages(user){
     var query = Message.find({});
