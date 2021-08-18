@@ -1,5 +1,4 @@
 const Message = require("./messageModel")
-const moment = require("moment")
 
 function newMessage(message, users) {
 
@@ -9,7 +8,14 @@ function newMessage(message, users) {
         id: 0,
         username: message.content.username.replace(/</gi, ""),
         content: message.content.content.replace(/</gi, ""),
-        time: moment.utc().format('YYYY-MM-DD HH:mm:ss')
+        time: {
+            year: date.getFullYear(),
+            month: date.getMonth(),
+            day: date.getDay(),
+            hours: date.getHours(),
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds()
+        }
     })
 
     newMessage.save();
@@ -19,8 +25,16 @@ function newMessage(message, users) {
         content: {
             username: message.content.username.replace(/</gi, ""),
             message: message.content.content.replace(/</gi, ""),
-            time: moment.utc().format('YYYY-MM-DD HH:mm:ss')
+            time: {
+                year: date.getUTCFullYear(),
+                month: date.getUTCMonth(),
+                day: date.getUTCDay(),
+                hours: date.getUTCHours(),
+                minutes: date.getUTCMinutes(),
+                seconds: date.getUTCSeconds()
+            }
         }
+
     };
     let json_obj = JSON.stringify(obj); // creating json object
 
