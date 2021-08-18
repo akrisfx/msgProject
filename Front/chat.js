@@ -12,7 +12,8 @@ const btnSubmit = document.querySelector("#btnSend")
 
 const btnSubmitNickname = document.querySelector("#btnSendName")
 const inputNickname = document.querySelector("#inputNickName")
- 
+const onlineNow = document.querySelector("#onlineNow")
+const intOnline = document.querySelector("#intOnline")
 // Подключаем WebSocket
 const webSocket = new WebSocket('ws://localhost:5678');
 
@@ -28,14 +29,15 @@ webSocket.onmessage = function(e) {
     let data = JSON.parse(e.data);
     if (data.key == 1){
         for( let i = 0; i < data.content.length; i++){
-            chat.innerHTML += '<div class="msg">' + data.content[i].username + ': ' + data.content[i].content + '</div>'
+            chat.innerHTML += '<div class="msgContainer"><div class="msg">' + data.content[i].username + ': ' + data.content[i].content + '</div></div>'
         }
+        chat.scrollTo(0, chat.scrollHeight + 1000);
     } else if(data.key == 2) {
-        chat.innerHTML += '<div class="msg">' + data.content.username + ': ' + data.content.message + '</div>'
+        chat.innerHTML += '<div class="msgContainer"><div class="msg">' + data.content.username + ': ' + data.content.message + '</div></div>'
         console.log(data.content.time)
     }
     else if(data.key == 3){
-        console.log(data.onlineUsers)
+        intOnline.innerHTML = '<span id="intOnline">' + data.onlineUsers + "</span>";
     }
     else if(data.key == 4){
         IDofUser = data.content.id;
@@ -105,9 +107,6 @@ form.addEventListener('focus', (event) => {
 }, true);
 
 
-
 getNickname.addEventListener('focus', (event) => {
     event.target.style.color = 'rgb(228, 228, 228)';
 }, true);
-
-
