@@ -1,5 +1,3 @@
-
-
 function sendOnlineUsersToAll(users) {
     let json = {
         key: 3,

@@ -1,11 +1,20 @@
 const WebSocket = require('ws');
 const mongoose = require('mongoose');
 
-const sendOnlineUsersToAll = require("./sendOnlineUsersToAll")
-const sendingAllMessages = require("./sendingAllMessages")
-const newMessage = require("./newMessage")
-const createConnection = require("./databaseUse")
-const Message = require("./messageModel")
+const sendListofUsers = require("./sendToFront/sendListofUsers")
+const sendIDandUsername = require("./sendToFront/sendIDandUsername")
+const sendOnlineUsersToAll = require("./sendToFront/sendOnlineUsersToAll")
+const sendingAllMessages = require("./sendToFront/sendingAllMessages")
+const newMessage = require("./sendToFront/newMessage")
+
+const createConnection = require("./database/databaseUse")
+
+const getUniqueID = require("./getUniqueID")
+
+
+const sendingNewMessageToAllUsers = 2;
+const getNewUsername = 5;
+
 
 function creatingServer() {
     createConnection();
@@ -21,11 +30,10 @@ const wsServer = creatingServer();
 
 let users = [];
 
-
 wsServer.on('connection', async function (ws) {
     let user = {
         connection: ws,
-        id: users.length + 1,
+        id: getUniqueID(),
         username: "Guest"
     }
     users.push(user)
@@ -40,14 +48,18 @@ wsServer.on('connection', async function (ws) {
     ws.on('message', function (message) {
         message = JSON.parse(message);
 
-        if (message.key == 2) {
+        if (message.key == sendingNewMessageToAllUsers) {
             newMessage(message, users)
         }
-        else if (message.key == 5)
+
+        else if (message.key == getNewUsername)
         {
-            users[message.content.id-1].username = message.content.username
-            console.log("Changed username: " + users[message.content.id-1].username)
-            sendListofUsers(users)
+            for(let u of users){
+                if (u.id == message.content.id){
+                    u.username = message.content.username
+                    sendListofUsers(users)
+                }
+            }
         }
 
     })
@@ -59,35 +71,6 @@ wsServer.on('connection', async function (ws) {
         sendListofUsers(users)
     })
 })
-
-function sendIDandUsername(user){
-        let json = {
-            key: 4,
-            content: {
-                id: user.id,
-                username: user.username
-            }
-        }
-        user.connection.send(JSON.stringify(json))
-}
-
-function sendListofUsers(users){
-    listOfUsers = []
-    for (let i = 0; i < users.length; i++) {
-        listOfUsers.push({
-            id: users[i].id,
-            username: users[i].username
-        })
-    }
-    console.log(listOfUsers)
-    let json = {
-        key: 6,
-        content: listOfUsers
-    }
-    for (let u of users) {
-        u.connection.send(JSON.stringify(json));
-    }
-}
 
 // 1 - sending all messages to new user
 // 2 - sending new message to all users
