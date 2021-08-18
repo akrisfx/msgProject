@@ -52,7 +52,7 @@ wsServer.on('connection', async function (ws) {
             newMessage(message, users)
         }
 
-        else if (message.key == getNewUsername)
+        else if (message.key == getNewUsername && message.content.username == "")
         {
             for(let u of users){
                 if (u.id == message.content.id){

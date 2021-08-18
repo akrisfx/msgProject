@@ -41,7 +41,7 @@ webSocket.onmessage = function(dataFromServer) {
         chat.innerHTML += '<div class="msgContainer"><span class="msg">' + data.content.username + ': ' + data.content.message + '</span><span class="time">  ' + localTime +'</span></div>'
     }
     else if(data.key == 3){
-        intOnline.innerHTML = '<span id="intOnline">' + data.onlineUsers + "</span>";
+        intOnline.innerHTML = '<span id="intOnline">' + data.onlineUsers + '</span>';
     }
     else if(data.key == 4){
         IDofUser = data.content.id;
