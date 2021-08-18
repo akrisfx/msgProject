@@ -43,7 +43,7 @@ wsServer.on('connection', async function (ws) {
         if (message.key == 2) {
             newMessage(message, users)
         }
-        else if (message.key == 5)
+        else if (message.key == 5 && message.content.username != "")
         {
             users[message.content.id-1].username = message.content.username
             console.log("Changed username: " + users[message.content.id-1].username)

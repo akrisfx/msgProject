@@ -6,14 +6,7 @@ const message = new Schema({
   id: { type: Number, default: 0 },
   username: { type: String, default: "User" },
   content: { type: String, default: "" },
-  time: {
-    year: String,
-    month: String,
-    day: String,
-    hours: String,
-    minutes: String,
-    seconds: String
-  }
+  time: { type: String, default: "" }
 });
 
 module.exports = mongoose.model("Message", message);
