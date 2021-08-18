@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "moment": "^2.29.1",
     "mongoose": "^5.13.7",
     "pg": "^8.7.1",
     "ws": "^8.1.0"
