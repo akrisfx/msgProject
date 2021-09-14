@@ -62,12 +62,17 @@ webSocket.onmessage = function(dataFromServer) {
     data = ''
 };
 
-var username = "Guest"
+let username = "Guest"
+
+try {
+    username = localStorage.getItem('username', username)
+} catch{} 
+inputNickname.value = username
 
 btnSubmitNickname.addEventListener("click", () => {
     if (inputNickname.value != ''){
     username = String(inputNickname.value)
-    }
+    localStorage.setItem('username', username)
     webSocket.send(JSON.stringify({
         key: 5,
         content: {
@@ -75,6 +80,8 @@ btnSubmitNickname.addEventListener("click", () => {
             username: username
         }
     }));
+    }
+    
 })
 
 
